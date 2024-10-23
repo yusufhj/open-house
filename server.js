@@ -6,11 +6,11 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
 const session = require('express-session');
+const path = require('path');
 
 const authController = require('./controllers/auth.js');
-
+const listingsController = require('./controllers/listings.js');
 const port = process.env.PORT ? process.env.PORT : '3000';
-const path = require('path');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -37,15 +37,8 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/vip-lounge', (req, res) => {
-  if (req.session.user) {
-    res.send(`Welcome to the party ${req.session.user.username}.`);
-  } else {
-    res.send('Sorry, no guests allowed.');
-  }
-});
-
 app.use('/auth', authController);
+app.use('/listings', listingsController);
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
