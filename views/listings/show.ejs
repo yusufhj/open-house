@@ -8,34 +8,22 @@
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
-    <div class="show-page-container">
-      <div class="show-img"></div>
-      <div class="show-info-container">
-        <div class="show-header">
-          <h1><%= listing.city %> Listing</h1>
-          <h3>$<%= listing.price %></h3>
-        </div>
-        <div class="show-details-container">
-          <h3>Details</h3>
-          <p>House Size: <%= listing.size %> sq ft</p>
-          <p>Address: <%= listing.streetAddress %></p>
-          <% if (listing.owner._id.equals(user._id)) { %>
-          <div class="owner-container">
-            <p>Owned by you</p>
-            <a href="/listings/<%= listing._id %>/edit">Edit</a>
-            <form
-              action="/listings/<%= listing._id %>?_method=DELETE"
-              method="POST"
-            >
-              <button type="submit">Delete Listing</button>
-            </form>
-          </div>
-          <% } else { %>
-          <p>Owned by <%= listing.owner.username %></p>
-          <% } %>
-        </div>
 
-      </div>
-    </div>
+    <h1>A listing in <%= listing.city %></h1>
+
+    <h2>Details</h2>
+    <p>House Size: <%= listing.size %> sq ft</p>
+    <p>Price: $<%= listing.price %></p>
+    <p>Street address: <%= listing.streetAddress %></p>
+    <h2>Owner</h2>
+    <% if (listing.owner._id.equals(user._id)) { %>
+      <p>You own this!</p>
+      <a href="/listings/<%= listing._id %>/edit">Edit this listing</a>
+      <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete this listing</button>
+      </form>
+    <% } else { %>
+      <p>You don't own this, <%= listing.owner.username %> does!</p>
+    <% } %>
   </body>
 </html>
