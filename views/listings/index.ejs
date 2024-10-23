@@ -10,5 +10,13 @@
     <%- include('../partials/_navbar') %>
     <h1>Here's all the Listings</h1>
     <a href="/listings/new">Add a New Listing</a>
+    <ul>
+      <% listings.forEach((listing) => { %>
+        <li>
+          A listing in <%= listing.city %> owned by <%= listing.owner.username %>.
+          <a href="/listings/<%= listing._id %>">View more details.</a>
+        </li>
+      <% }) %>
+    </ul>
   </body>
 </html>
