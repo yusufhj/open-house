@@ -35,14 +35,21 @@ router.post('/', async (req, res) => {
 
 router.get('/:listingId', async (req, res) => {
     try {
-        const listing = await Listing.findById(req.params.listingId).populate('owner');
-        console.log('Listing: ', listing);
-        res.render('listings/show.ejs', {
-            listing,
-        });
+      const populatedListings = await Listing.findById(
+        req.params.listingId
+      ).populate('owner');
+  
+      const userHasFavorited = populatedListings.favoritedByUsers.some((user) =>
+        user.equals(req.session.user._id)
+      );
+  
+      res.render('listings/show.ejs', {
+        listing: populatedListings,
+        userHasFavorited: userHasFavorited,
+      });
     } catch (error) {
-        console.log(error);
-        res.redirect('/');
+      console.log(error);
+      res.redirect('/');
     }
 });
 
@@ -83,6 +90,32 @@ router.put('/:listingId', async (req, res) => {
       } else {
         res.send("You don't have permission to do that.");
       }
+    } catch (error) {
+      console.log(error);
+      res.redirect('/');
+    }
+});
+
+// const updateObject = { $push: { targetArray: newValue } };
+
+router.post('/:listingId/favorited-by/:userId', async (req, res) => {
+    try {
+      await Listing.findByIdAndUpdate(req.params.listingId, {
+        $push: { favoritedByUsers: req.params.userId },
+      });
+      res.redirect(`/listings/${req.params.listingId}`);
+    } catch (error) {
+      console.log(error);
+      res.redirect('/');
+    }
+});
+
+router.delete('/:listingId/favorited-by/:userId', async (req, res) => {
+    try {
+      await Listing.findByIdAndUpdate(req.params.listingId, {
+        $pull: { favoritedByUsers: req.params.userId },
+      });
+      res.redirect(`/listings/${req.params.listingId}`);
     } catch (error) {
       console.log(error);
       res.redirect('/');

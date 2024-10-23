@@ -378,3 +378,158 @@ a > h4 {
   font-weight: normal;
   font-size: 1em;
 }
+
+.show-page-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 50px;
+  height: 100%;
+  max-width: 100%;
+}
+
+.show-img {
+  background-image: url('https://images.unsplash.com/photo-1600585154526-990dced4db0d');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 80%;
+  width: 40%;
+}
+
+.show-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 80%;
+}
+
+.show-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 75%;
+}
+
+.show-header > h1 {
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 1.8em;
+}
+
+.show-header > h3 {
+  font-weight: normal;
+  font-size: 1.6em;
+}
+
+.show-details-container {
+  border: 1px solid gray;
+  padding: 20px 30px;
+  width: 70%;
+  margin: 10px 0;
+}
+
+.show-details-container > h3 {
+  font-weight: normal;
+  font-size: 1em;
+}
+
+.show-details-container > p {
+  font-size: 1em;
+}
+
+.owner-container {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.owner-container > a {
+  padding: 6px 32px;
+  background-color: #6f8dae;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  font-size: 0.8em;
+}
+
+.owner-container > a:hover {
+  background-color: black;
+}
+
+.favorites-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 60px 30px;
+  width: 70%;
+  border: 1px solid gray;
+  margin: 10px 0;
+}
+
+.favorites-count {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.favorites-count > h2 {
+  font-size: 1.1em;
+  margin: 0 10px;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+  width: 90%;
+}
+
+.profile-favorites-container {
+  padding: 10px 30px;
+  border: 1px solid gray;
+  width: 70%;
+  align-self: center;
+}
+
+.profile-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 70px;
+}
+
+.profile-card-container > a {
+  padding: 8px 15px;
+  width: 7em;
+  height: 6em;
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  margin: 5px 10px 20px;
+  color: black;
+}
+
+.profile-card-container > a:hover {
+  background-color: black;
+  color: white;
+}
+
+.profile-card-container > a > h4 {
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.profile-card-container > a > p {
+  font-size: 0.8em;
+}
