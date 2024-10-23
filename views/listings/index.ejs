@@ -7,16 +7,18 @@
     <title>All Listings</title>
   </head>
   <body>
-    <%- include('../partials/_navbar') %>
-    <h1>Here's all the Listings</h1>
-    <a href="/listings/new">Add a New Listing</a>
-    <ul>
-      <% listings.forEach((listing) => { %>
-        <li>
-          A listing in <%= listing.city %> owned by <%= listing.owner.username %>.
-          <a href="/listings/<%= listing._id %>">View more details.</a>
-        </li>
+    <%- include('../partials/_navbar.ejs') %>
+    <div class="index-header">
+      <h1>All Listings</h1>
+      <a href="/listings/new">+ Add Listing</a>
+    </div>
+    <div class="card-container">
+      <% listings.forEach((listing)=> { %>
+      <a href="/listings/<%= listing._id %>">
+        <h4><%= listing.city %> Listing</h4>
+        <p>Owned by <%= listing.owner.username %></p>
+      </a>
       <% }) %>
-    </ul>
+    </div>
   </body>
 </html>
